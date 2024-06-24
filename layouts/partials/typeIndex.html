@@ -6,7 +6,8 @@
 <span id="std_out_03"></span> <br>
 
 {{ $postList := "" }}
-{{ $nposts := 5 }}
+
+{{ $nposts := site.Params.terminal.nposts }}
 {{ range $index, $page := (where site.RegularPages "Section" "posts" | first $nposts ) }}
   {{ $formattedDate := $page.Date.Format "2006-01-02" }}
   {{ $postList = printf "%s %s <a href=\"%s\">%s</a>" $postList $formattedDate $page.Permalink $page.Title }}
@@ -63,9 +64,9 @@
         stdoutDelay = parseDelay("{{ .stdoutdelay }}"),
         commandDelay = parseDelay("{{ .commanddelay }}");
     const typeeffetct = async () => {
-        await typewriter("{{ .env }}", "ps1_01", ps1Delay); await typewriter("{{ .cat }}", "command_01", commandDelay);
+        await typewriter("{{ .env }}", "ps1_01", ps1Delay); await typewriter("{{ .whoami }}", "command_01", commandDelay);
         await typewriter("{{ .description }}", "std_out_01", stdoutDelay);
-        await typewriter("{{ .env }}", "ps1_02", ps1Delay); await typewriter("ls -t posts | head -5", "command_02", commandDelay);
+        await typewriter("{{ .env }}", "ps1_02", ps1Delay); await typewriter("{{ .ls }}", "command_02", commandDelay);
         await typewriter("{{ $postList }}","std_out_02",stdoutDelay);
         await typewriter("{{ .env }}", "ps1_03", ps1Delay); await typewriter("{{ .tree }}", "command_03", commandDelay);
         await typewriter("{{ .leaf }}", "std_out_03", stdoutDelay);

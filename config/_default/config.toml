@@ -9,6 +9,8 @@ ignoreErrors = ["error-remote-getjson"]
   # Note: This is for the meta description, which is different from the "description" displayed in the terminal.
   description = "Jane Doe's Portfolio!"
   [Params.Terminal]
+  nposts = 5
+
   # Note: color scheme
   # Note: You can choose between
   # Note: hugo-theme-shell original: ["shell-powershell", "shell-ubuntu", "shell-retro"]
