@@ -1,9 +1,19 @@
-<span id="ps1_01"></span> <span id="cd"></span> <br>
-<span id="ps1_02"></span> <span id="cat"></span> <br>
+<span id="ps1_01"></span> <span id="command_01"></span> <br>
 <span id="std_out_01"></span> <br>
-<span id="ps1_03"></span> <span id="tree"></span> <br>
+<span id="ps1_02"></span> <span id="command_02"></span> <br>
 <span id="std_out_02"></span> <br>
-<span id="ps1_04"></span>
+<span id="ps1_03"></span> <span id="command_03"></span> <br>
+<span id="std_out_03"></span> <br>
+
+{{ $postList := "" }}
+{{ $nposts := 5 }}
+{{ range $index, $page := (where site.RegularPages "Section" "posts" | first $nposts ) }}
+  {{ $formattedDate := $page.Date.Format "2006-01-02" }}
+  {{ $postList = printf "%s %s <a href=\"%s\">%s</a>" $postList $formattedDate $page.Permalink $page.Title }}
+  {{ if ne $index (sub $nposts 1) }}
+    {{ $postList = printf "%s<br/>" $postList }}
+  {{ end }} 
+{{ end }}
 
 <script type="text/javascript">
     async function typewriter(text, elementId, waitAfter) {
@@ -53,12 +63,12 @@
         stdoutDelay = parseDelay("{{ .stdoutdelay }}"),
         commandDelay = parseDelay("{{ .commanddelay }}");
     const typeeffetct = async () => {
-        await typewriter("{{ .env }}", "ps1_01", ps1Delay); await typewriter("{{ .cd }}", "cd", commandDelay);
-        await typewriter("{{ .envWithDir }}", "ps1_02", ps1Delay); await typewriter("{{ .cat }}", "cat", commandDelay);
+        await typewriter("{{ .env }}", "ps1_01", ps1Delay); await typewriter("{{ .cat }}", "command_01", commandDelay);
         await typewriter("{{ .description }}", "std_out_01", stdoutDelay);
-        await typewriter("{{ .envWithDir }}", "ps1_03", ps1Delay); await typewriter("{{ .tree }}", "tree", commandDelay);
-        await typewriter("{{ .leaf }}", "std_out_02", stdoutDelay);
-        await typewriter("{{ .envWithDir }}", "ps1_04", ps1Delay);
+        await typewriter("{{ .env }}", "ps1_02", ps1Delay); await typewriter("ls -t posts | head -5", "command_02", commandDelay);
+        await typewriter("{{ $postList }}","std_out_02",stdoutDelay);
+        await typewriter("{{ .env }}", "ps1_03", ps1Delay); await typewriter("{{ .tree }}", "command_03", commandDelay);
+        await typewriter("{{ .leaf }}", "std_out_03", stdoutDelay);
         return;
     }
 
