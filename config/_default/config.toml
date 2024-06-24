@@ -13,7 +13,7 @@ ignoreErrors = ["error-remote-getjson"]
   # Note: You can choose between
   # Note: hugo-theme-shell original: ["shell-powershell", "shell-ubuntu", "shell-retro"]
   # Note: gogh theme: https://mayccoll.github.io/Gogh/
-  scheme = "Molokai"
+  scheme = "Tender"
 
   # Note: in terminal
   # [userName]@[pcName]:~/$ cd [workDir]
@@ -28,7 +28,7 @@ ignoreErrors = ["error-remote-getjson"]
   # Note: result of the tree command
   userName = "jane"
   pcName = "laptop"
-  workDir = "mydir"
+  workDir = "mydir33"
   profile = "profile.txt"
 
   # Note: speed at which text is displayed on the terminal
